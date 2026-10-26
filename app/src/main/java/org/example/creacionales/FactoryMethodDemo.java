@@ -1,4 +1,6 @@
 package org.example.creacionales;
+
+
 interface Notificacion {
     void enviarMensaje(String mensaje);
 }
@@ -19,7 +21,7 @@ class NotificacionSMS implements Notificacion {
 public class FactoryMethodDemo {
 
     public static void crearYEnviar(String tipo, String mensaje) {
-        Notificacion notificacion = crearNotificacion(tipo);
+        Notificacion notificacion = crearNotificacion(type);
         if (notificacion != null) {
             notificacion.enviarMensaje(mensaje);
         }

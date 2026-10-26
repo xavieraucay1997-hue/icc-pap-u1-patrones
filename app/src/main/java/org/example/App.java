@@ -3,21 +3,68 @@
  */
 package org.example;
 
+import java.util.List;
+
 import org.example.creacionales.FactoryMethodDemo;
+import org.example.creacionales.builder.Pizza;
+import org.example.creacionales.builder.PizzaBuilder;
+import org.example.creacionales.prototype.PlantillaEmail;
+import org.example.factoryMethod.Importador;
+import org.example.factoryMethod.ImportadorPuntoComa;
 
 public class App {
     public String getGreeting() {
         return "Hello World!";
     }
-    public static void runFactory() {
-        System.out.println(" Demostración del Patrón Creacional: Factory Method");
-        System.out.println();
+   // public static void runFactory() {
+     //   System.out.println(" Demostración del Patrón Creacional: Factory Method");
+       // System.out.println();
 
-        FactoryMethodDemo.crearYEnviar("EMAIL", "Practica de proyectos creacionales Factory Method");
-        FactoryMethodDemo.crearYEnviar("SMS", "Codigo 8281.");
+        //FactoryMethodDemo.crearYEnviar("EMAIL", "Practica de proyectos creacionales Factory Method");
+        //FactoryMethodDemo.crearYEnviar("SMS", "Codigo 8281.");
+    //}
+
+    public static void main(String[] args) throws Exception {
+        //runFactory();
+        //runFactoryMethod();
+        runPrototype();
+        runBuilder();
     }
 
-    public static void main(String[] args) {
-        runFactory();
+    private static void runBuilder() {
+        Pizza pizza = new PizzaBuilder().addIng("Jamon").setSize("large").addIng("Queso").build();
+        System.out.println(pizza.descripcion());
+
+        Pizza pizza2 = new PizzaBuilder().build();
+        System.out.println(pizza2.descripcion());
+
+
+
+        
+	}
+	private static void runFactoryMethod(){
+        Importador impPC = new ImportadorPuntoComa();
+;
+        System.out.println(impPC.importacion(List.of("S01;22.5;C","S02;18;C")));
+        System.out.println(impPC.importacion(List.of("S01\t22.5\tC","\tS02\t18\tC")));
+    
     }
+
+    //implementar otro sensor separados por tabulaciones
+
+
+    private static void runPrototype(){
+        PlantillaEmail pEmail = new PlantillaEmail("Aviso", "Pedido listo");
+        PlantillaEmail pEmailSolicitud = pEmail.clone();
+      //  PlantillaEmail pEmailSolicitud = pEmail.copia();
+
+
+      pEmailSolicitud.cambiarAsunto("Solicitud");
+      System.out.println(pEmail);
+      System.out.println(pEmailSolicitud.contenido());
+
+    }
+
+
+
 }
