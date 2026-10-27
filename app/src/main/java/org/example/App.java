@@ -8,6 +8,11 @@ import java.util.List;
 import org.example.creacionales.FactoryMethodDemo;
 import org.example.creacionales.builder.Pizza;
 import org.example.creacionales.builder.PizzaBuilder;
+import org.example.creacionales.practica.GestionPedidos.configuracion.ConfiguracionSistema;
+import org.example.creacionales.practica.GestionPedidos.creadores.CreadorEnLinea;
+import org.example.creacionales.practica.GestionPedidos.creadores.CreadorPedido;
+import org.example.creacionales.practica.GestionPedidos.creadores.CreadorPresencial;
+import org.example.creacionales.practica.GestionPedidos.pedidos.Pedido;
 import org.example.creacionales.prototype.PlantillaEmail;
 import org.example.factoryMethod.Importador;
 import org.example.factoryMethod.ImportadorPuntoComa;
@@ -27,11 +32,13 @@ public class App {
     public static void main(String[] args) throws Exception {
         //runFactory();
         //runFactoryMethod();
-        runPrototype();
-        runBuilder();
+        //runPrototype();
+      //  runBuilder();
+      runGestionPedidos();
+
     }
 
-    private static void runBuilder() {
+   /*  private static void runBuilder() {
         Pizza pizza = new PizzaBuilder().addIng("Jamon").setSize("large").addIng("Queso").build();
         System.out.println(pizza.descripcion());
 
@@ -64,7 +71,43 @@ public class App {
       System.out.println(pEmailSolicitud.contenido());
 
     }
+    */
+   
+    private static void runGestionPedidos() {
 
+    
+        ConfiguracionSistema configuracionSistema = ConfiguracionSistema.getInstancia();
+        configuracionSistema.actualizarPorcentajeImpuesto(15.0);
 
+        System.out.println();
+        System.out.println("Configuracion del sistema Impuesto: " + configuracionSistema.obtenerPorcentajeImpuesto() + "%");
+        System.out.println();
 
+        CreadorPedido presencial = new CreadorPresencial();
+        Pedido pedido1 = presencial.fabricarPedido("P001", "Ana Torres", 100.0);
+
+        System.out.println("--- Pedido presencial --- Codigo: P001");
+        System.out.println();
+
+        pedido1.calcularYMostrarDetalles();
+
+        System.out.println();
+
+        CreadorPedido linea = new CreadorEnLinea();
+        Pedido pedido2 = linea.fabricarPedido("P002", "Juan Perez", 200.0);
+
+        System.out.println("--- Pedido en linea --- Codigo: P002");
+        System.out.println();
+
+        pedido2.calcularYMostrarDetalles();
+
+        System.out.println();
+
+        ConfiguracionSistema configuracionSistema2 = ConfiguracionSistema.getInstancia();
+
+        boolean igual = (configuracionSistema == configuracionSistema2);
+
+        System.out.println("Configuracion compartida: " + igual);
+    }
 }
+

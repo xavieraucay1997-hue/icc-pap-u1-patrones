@@ -1,6 +1,5 @@
 package org.example.creacionales;
 
-
 interface Notificacion {
     void enviarMensaje(String mensaje);
 }
@@ -11,6 +10,7 @@ class NotificacionEmail implements Notificacion {
         System.out.println("EMAIL Enviando correo: " + mensaje);
     }
 }
+
 class NotificacionSMS implements Notificacion {
     @Override
     public void enviarMensaje(String mensaje) {
@@ -21,11 +21,13 @@ class NotificacionSMS implements Notificacion {
 public class FactoryMethodDemo {
 
     public static void crearYEnviar(String tipo, String mensaje) {
-        Notificacion notificacion = crearNotificacion(type);
+
+        Notificacion notificacion = crearNotificacion(tipo);
         if (notificacion != null) {
             notificacion.enviarMensaje(mensaje);
         }
     }
+
     private static Notificacion crearNotificacion(String tipo) {
         if (tipo == null || tipo.isEmpty()) {
             return null;
@@ -37,4 +39,5 @@ public class FactoryMethodDemo {
         }
         throw new IllegalArgumentException("Tipo de notificacion desconocido: " + tipo);
     }
+    
 }
