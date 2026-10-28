@@ -13,3 +13,5 @@ Se utilizo este metodo ya que es muy bueno para crear los diferentes tipos de pe
 
 ### Salida de consola : 
 
+
+![alt text](image.png)
