@@ -9,6 +9,7 @@ public class AdaptadorCargadorIna implements Cargador {
     }
     @Override
     public void cargarCelular() {
+        cInalambrico.cargarBase();
 
     }
     
