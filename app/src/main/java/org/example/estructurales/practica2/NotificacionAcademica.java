@@ -7,7 +7,7 @@ public class NotificacionAcademica extends Notificacion {
 
     @Override
     public void notificar(String destinatario, String mensaje) {
-        canal.enviar(destinatario, " ACADEMICO " +  mensaje);
+        canal.enviar(destinatario, " [ACADEMICO] " +  mensaje);
     }
     
     

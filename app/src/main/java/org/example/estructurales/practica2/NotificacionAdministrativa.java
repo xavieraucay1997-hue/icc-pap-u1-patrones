@@ -7,7 +7,7 @@ public class NotificacionAdministrativa extends Notificacion{
 
     @Override
     public void notificar(String destinatario, String mensaje) {
-        canal.enviar(destinatario," ADMINISTRATIVO " + mensaje);
+        canal.enviar(destinatario," [ADMINISTRATIVO] " + mensaje);
     }
     
 }
